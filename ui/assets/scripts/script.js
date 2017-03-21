@@ -38,7 +38,6 @@ $(function() {
   setInterval(function(){
     var logo = $('.jsLogo').eq(Math.floor(Math.random()*logoCount));
     blip(logo)
-
   },500);
   $('.jsLogo').on('mouseenter',function(){
     blip($(this))
@@ -91,6 +90,10 @@ $(function() {
       transition: '.8s'
     })})
     setTimeout(function(){
+      $('.jsExpLogo').css({
+        filter: 'blur(0)',
+        fill: '#352F2F',
+      })
       logo.css({
         'filter': 'blur(0)',
         transition: '2s',
