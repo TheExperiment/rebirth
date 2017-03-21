@@ -124,7 +124,7 @@ $(function() {
 
 
   function scrollHandler(e) {
-    if (_winW > 800) {
+    if (_winW > 960) {
       e.preventDefault()
     }
     var oldScrollTop = scrollTop;
