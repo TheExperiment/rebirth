@@ -91,9 +91,10 @@ $(function() {
       transition: '.8s'
     })})
     setTimeout(function(){
-      $('.jsExpLogo').css({
-        filter: 'blur(0)',
-        fill: '#352F2F',
+      logo.css({
+        'filter': 'blur(0)',
+        transition: '2s',
+        backgroundColor: '#352F2F',
       })
       $('path', logo).css({
         fill: 'inherit',
