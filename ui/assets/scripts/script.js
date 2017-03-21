@@ -33,85 +33,112 @@ $(function() {
       'background-position-y': Math.floor(Math.random()*100),
       'background-position-x': Math.floor(Math.random()*100)
     })
-  },10)
+  },70)
 
   setInterval(function(){
     var logo = $('.jsLogo').eq(Math.floor(Math.random()*logoCount));
+    blip(logo)
+
+  },500);
+  $('.jsLogo').on('mouseenter',function(){
+    blip($(this))
+  })
+  function blip(logo) {
     var blur = Math.floor(Math.random() * 10);
+    var color = Math.floor(Math.random()*255)+','+Math.floor(Math.random()*255)+','+Math.floor(Math.random()*255)
     logo.css({
-      'filter': 'blur('+blur+'px)',
+      filter: 'blur('+blur+'px)',
       transition: Math.ceil(Math.random() * 2000) + 1000 + 'ms',
-      backgroundColor: 'rgb('+Math.floor(Math.random()*255)+','+Math.floor(Math.random()*255)+','+Math.floor(Math.random()*255)+')'
+      backgroundColor: 'rgb('+color+')',
+      color: 'rgba('+color+',.5)',
     })
+    $('.jsExpLogo').css({
+      filter: 'blur('+blur/3+'px)',
+      transition: '.5s',
+      fill: 'rgb('+color+')'
+    })
+
     $('.jsLine').css({
-      color: 'rgb('+Math.floor(Math.random()*255)+','+Math.floor(Math.random()*255)+','+Math.floor(Math.random()*255)+')',
+      color: 'rgb('+color+')',
+      transition: '.5s',
+    })
+    $('.jsCaret').css({
+      fill: 'rgb('+color+')',
+      transition: '.5s',
     })
     $('path', logo).each(function(){
       $(this).css({
       fill: 'rgb('+Math.floor(Math.random()*255)+','+Math.floor(Math.random()*255)+','+Math.floor(Math.random()*255)+')',
-      transition: '.5s'
+      transition: '.5s',
+      transition: '.8s'
     })})
     $('circle', logo).each(function(){
       $(this).css({
       fill: 'rgb('+Math.floor(Math.random()*255)+','+Math.floor(Math.random()*255)+','+Math.floor(Math.random()*255)+')',
+      transition: '.8s',
       transition: '.8s'
     })})
     $('rect', logo).each(function(){
       $(this).css({
       fill: 'rgb('+Math.floor(Math.random()*255)+','+Math.floor(Math.random()*255)+','+Math.floor(Math.random()*255)+')',
-      transition: '.4s'
+      transition: '.4s',
+      transition: '.8s'
     })})
     $('polygon', logo).each(function(){
       $(this).css({
       fill: 'rgb('+Math.floor(Math.random()*255)+','+Math.floor(Math.random()*255)+','+Math.floor(Math.random()*255)+')',
-      transition: '1s'
+      transition: '1s',
+      transition: '.8s'
     })})
-
-  },500);
-
-  setInterval(function(){
-    var logo = $('.jsLogo');
-    logo.css({
-      'filter': 'blur(0)',
-      transition: '2s',
-      backgroundColor: '#222',
-    })
-    $('path', logo).css({
-      fill: 'inherit',
-      transition: '.5s'
-    })
-    $('circle', logo).css({
-      fill: 'inherit',
-      transition: '.5s'
-    })
-    $('rect', logo).css({
-      fill: 'inherit',
-      transition: '.5s'
-    })
-    $('polygon', logo).css({
-      fill: 'inherit',
-      transition: '.5s'
-    })
-  },2000);
+    setTimeout(function(){
+      $('.jsExpLogo').css({
+        filter: 'blur(0)',
+        fill: '#352F2F',
+      })
+      logo.css({
+        'filter': 'blur(0)',
+        transition: '2s',
+        backgroundColor: '#352F2F',
+      })
+      $('path', logo).css({
+        fill: 'inherit',
+        transition: '1s'
+      })
+      $('circle', logo).css({
+        fill: 'inherit',
+        transition: '1.2s'
+      })
+      $('rect', logo).css({
+        fill: 'inherit',
+        transition: '1.4s'
+      })
+      $('polygon', logo).css({
+        fill: 'inherit',
+        transition: '.6s'
+      })
+    },2000);
+  }
 
 // FUNCTIONS
 ////////////
 
 
   function scrollHandler(e) {
+    if (_winW > 800) {
+      e.preventDefault()
+    }
     var oldScrollTop = scrollTop;
     scrollTop = WIN.scrollTop();
     var moved = scrollTop - oldScrollTop;
-    if (scrollTop > _winH/4 && !BODY.hasClass('is-scrolled')) {
-      BODY.addClass('is-scrolled')
-    } else if (scrollTop < _winH/4 && BODY.hasClass('is-scrolled')) {
-      BODY.removeClass('is-scrolled')
-    }
-    if ((moved < 0 && !BODY.hasClass('is-scrolling-up')) || scrollTop >= $('footer').offset().top + $('footer').height() - _winH) {
-      BODY.addClass('is-scrolling-up')
-    } else if (moved > 0 && BODY.hasClass('is-scrolling-up') &&  scrollTop < $('footer').offset().top + $('footer').height() - _winH) {
-      BODY.removeClass('is-scrolling-up')
-    }
+    var color = 'rgb('+Number(Math.floor(Math.random()*155)+100)+','+Number(Math.floor(Math.random()*155)+100)+','+Number(Math.floor(Math.random()*155)+100)+')'
+    BODY.css({
+      background: color,
+      transition: '.6s'
+    })
+    $('.jsContact').css({
+      background: color,
+      transition: '.6s'
+    })
   }
 
   function mousemoveHandler(e) {
