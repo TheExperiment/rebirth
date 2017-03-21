@@ -54,6 +54,10 @@ input {
   outline: none;
 }
 
+.sans {
+  font-family: -apple-system, BlinkMacSystemFont, "Roboto", "Droid Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
 a { color: #fff;
   text-decoration: none;
   font-size: 1em;
@@ -89,8 +93,15 @@ a:hover, a:active { outline: 0;}
 .jsLogo {
   transition: 1s;
 }
+.jsTitle{
+  transition: .2s ease-out;
+}
 .jsLogo:hover {
   transition: .2s !important;
+  .jsTitle {
+    opacity: 1;
+    transform: translate3d(0,-2rem,0);
+  }
 }
 
 .jsContact:hover {

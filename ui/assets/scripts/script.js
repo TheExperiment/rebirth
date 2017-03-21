@@ -10,7 +10,10 @@ $(function() {
   var BODY = $("body");
   var logoCount = $('.jsLogo').length;
   var z = 1;
-
+  $('.jsLogo').each(function(){
+    $(this).attr('data-width',$(this).width());
+    $(this).attr('data-height',$(this).height());
+  })
   resizeHandler(); // Calculate sizes right away
 
 // EVENTS
@@ -28,45 +31,10 @@ $(function() {
 
   WIN.on('mousemove',mousemoveHandler);
 
-  $('.jsContact').on('mouseleave', function() {
-    $('.jsLogo').css({
-      transform: 'translate3d(0,0,0)'
-    })
-  })
+  $('.jsContact').on('mouseleave', unshiftLogos)
   $('.jsContact').on('mouseenter', function(){
     blip($('.jsLogo'));
-    $('.jsLogo').eq(0).css({
-      transform: 'translateY('+ 4.1666+'vw)',
-      transition: '.4s'
-    })
-    $('.jsLogo').eq(1).css({
-      transform: 'translateY('+8.333+'vw)',
-      transition: '.4s'
-    })
-    $('.jsLogo').eq(2).css({
-      transform: 'translateY('+-8.333+'vw)',
-      transition: '.4s'
-    })
-    $('.jsLogo').eq(3).css({
-      transform: 'translateY('+-16.666+'vw)',
-      transition: '.4s'
-    })
-    $('.jsLogo').eq(4).css({
-      transform: 'translateX('+ 4.1666+'vw)',
-      transition: '.4s'
-    })
-    $('.jsLogo').eq(5).css({
-      transform: 'translateY('+ -4.1666+'vw)',
-      transition: '.4s'
-    })
-    $('.jsLogo').eq(6).css({
-      transform: 'translateY('+ 4.1666+'vw)',
-      transition: '.4s'
-    })
-    $('.jsLogo').eq(7).css({
-      transform: 'translateX('+ 8.333+'vw)',
-      transition: '.4s'
-    })
+    shiftLogos()
   })
 
   setInterval(function(){
@@ -83,6 +51,51 @@ $(function() {
   $('.jsLogo').on('mouseenter',function(){
     blip($(this))
   })
+
+  function unshiftLogos() {
+    $('.jsLogo').each(
+      function(i){ $('.jsLogo').eq(i).css({
+        transform: 'translate3d(0,0,0)',
+        width: $(this).attr('data-width'),
+        height: $(this).attr('data-height'),
+      })
+    })
+  }
+  function shiftLogos() {
+    $('.jsLogo').eq(0).css({
+      transition: '.4s',
+      height: '16.66666vw'
+    })
+    $('.jsLogo').eq(1).css({
+      transform: 'translateY('+8.333+'vw)',
+      transition: '.4s'
+    })
+    $('.jsLogo').eq(2).css({
+      transform: 'translateY('+-8.333+'vw)',
+      height: '8.3333vw',
+      transition: '.4s'
+    })
+    $('.jsLogo').eq(3).css({
+      transform: 'translateY('+-16.666+'vw)',
+      transition: '.4s'
+    })
+    $('.jsLogo').eq(4).css({
+      width: '16.6666vw',
+      transition: '.4s'
+    })
+    $('.jsLogo').eq(5).css({
+      height: '16.6666vw',
+      transition: '.4s'
+    })
+    $('.jsLogo').eq(6).css({
+      height: '8.3333vw',
+      transition: '.4s'
+    })
+    $('.jsLogo').eq(7).css({
+      transform: 'translateX('+ 8.333+'vw)',
+      transition: '.4s'
+    })
+  }
   function blip(logo) {
     var blur = Math.floor(Math.random() * 10);
     var color = Math.floor(Math.random()*255)+','+Math.floor(Math.random()*255)+','+Math.floor(Math.random()*255)
@@ -167,9 +180,12 @@ $(function() {
     if (_winW > 960) {
       e.preventDefault()
     }
-    var oldScrollTop = scrollTop;
-    scrollTop = WIN.scrollTop();
-    var moved = scrollTop - oldScrollTop;
+    var moved = e.originalEvent.deltaY
+    if (moved > 0) {
+      shiftLogos();
+    } else {
+      unshiftLogos()
+    }
     var color = 'rgb('+Number(Math.floor(Math.random()*155)+100)+','+Number(Math.floor(Math.random()*155)+100)+','+Number(Math.floor(Math.random()*155)+100)+')'
     BODY.css({
       background: color,

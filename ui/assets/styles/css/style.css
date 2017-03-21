@@ -333,6 +333,9 @@ input {
   border: none;
   outline: none;
 }
+.sans {
+  font-family: -apple-system, BlinkMacSystemFont, "Roboto", "Droid Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
 a {
   color: #fff;
   text-decoration: none;
@@ -372,8 +375,15 @@ a:active {
 .jsLogo {
   transition: 1s;
 }
+.jsTitle {
+  transition: 0.2s ease-out;
+}
 .jsLogo:hover {
   transition: .2s !important;
+}
+.jsLogo:hover .jsTitle {
+  opacity: 1;
+  transform: translate3d(0, -2rem, 0);
 }
 .jsContact:hover {
   background: #382C34;
