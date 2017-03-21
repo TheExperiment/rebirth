@@ -95,11 +95,6 @@ $(function() {
         filter: 'blur(0)',
         fill: '#352F2F',
       })
-      logo.css({
-        'filter': 'blur(0)',
-        transition: '2s',
-        backgroundColor: '#352F2F',
-      })
       $('path', logo).css({
         fill: 'inherit',
         transition: '1s'
