@@ -46,13 +46,13 @@ $(function() {
     var blur = Math.floor(Math.random() * 10);
     var color = Math.floor(Math.random()*255)+','+Math.floor(Math.random()*255)+','+Math.floor(Math.random()*255)
     logo.css({
-      filter: 'blur('+blur+'px)',
+      // filter: 'blur('+blur+'px)',
       transition: Math.ceil(Math.random() * 2000) + 1000 + 'ms',
       backgroundColor: 'rgb('+color+')',
       color: 'rgba('+color+',.5)',
     })
     $('.jsExpLogo').css({
-      filter: 'blur('+blur/3+'px)',
+      // filter: 'blur('+blur/3+'px)',
       transition: '.5s',
       fill: 'rgb('+color+')'
     })
@@ -91,11 +91,11 @@ $(function() {
     })})
     setTimeout(function(){
       $('.jsExpLogo').css({
-        filter: 'blur(0)',
+        // filter: 'blur(0)',
         fill: '#352F2F',
       })
       logo.css({
-        'filter': 'blur(0)',
+        // 'filter': 'blur(0)',
         transition: '2s',
         backgroundColor: '#352F2F',
       })
