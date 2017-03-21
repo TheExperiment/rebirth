@@ -369,9 +369,15 @@ a:active {
   left: 1vw;
   top: 1vw;
 }
+.jsLogo {
+  transition: 1s;
+}
 .jsLogo:hover {
-  transform: scale(0.95);
   transition: .2s !important;
+}
+.jsContact:hover {
+  background: #382C34;
+  color: #EDCBCB;
 }
 .pos-s {
   position: static;
