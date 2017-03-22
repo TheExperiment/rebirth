@@ -378,16 +378,16 @@ a:active {
 .jsTitle {
   transition: 0.2s ease-out;
 }
-.jsLogo:hover {
+/*.jsLogo:hover {
   transition: .2s !important;
-}
-.jsLogo:hover .jsTitle {
-  opacity: 1;
-  transform: translate3d(0, -2rem, 0);
-}
+  .jsTitle {
+    opacity: 1;
+    transform: translate3d(0,-2rem,0);
+  }
+}*/
 .jsContact:hover {
-  background: #382C34;
-  color: #EDCBCB;
+  background: #382C34 !important;
+  color: #EDCBCB !important;
 }
 .pos-s {
   position: static;
@@ -2948,6 +2948,9 @@ a:active {
   .ms-m-h-13 {
     margin-right: 13rem;
     margin-left: 13rem;
+  }
+  .ms-m-t-col05 {
+    margin-top: 4.33333vw;
   }
   .ms-m-t-0 {
     margin-top: 0rem;

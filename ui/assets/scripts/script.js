@@ -31,10 +31,16 @@ $(function() {
 
   WIN.on('mousemove',mousemoveHandler);
 
-  $('.jsContact').on('mouseleave', unshiftLogos)
+  $('.jsContact').on('mouseleave', function(){
+    if (_winW > 960) {
+      unshiftLogos()
+    }
+  })
   $('.jsContact').on('mouseenter', function(){
     blip($('.jsLogo'));
-    shiftLogos()
+    if (_winW > 960) {
+      shiftLogos()
+    }
   })
 
   setInterval(function(){
@@ -144,10 +150,6 @@ $(function() {
       transitionDuration: '.8s'
     })})
     setTimeout(function(){
-      $('.jsExpLogo').css({
-        // filter: 'blur(0)',
-        fill: '#352F2F',
-      })
       logo.css({
         // 'filter': 'blur(0)',
         transitionDuration: '2s',
@@ -179,12 +181,12 @@ $(function() {
   function scrollHandler(e) {
     if (_winW > 960) {
       e.preventDefault()
-    }
-    var moved = e.originalEvent.deltaY
-    if (moved > 0) {
-      shiftLogos();
-    } else {
-      unshiftLogos()
+      var moved = e.originalEvent.deltaY
+      if (moved > 0) {
+        shiftLogos();
+      } else {
+        unshiftLogos()
+      }
     }
     var color = 'rgb('+Number(Math.floor(Math.random()*155)+100)+','+Number(Math.floor(Math.random()*155)+100)+','+Number(Math.floor(Math.random()*155)+100)+')'
     BODY.css({
